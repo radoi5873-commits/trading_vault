@@ -61,3 +61,4 @@ TradingVault is a premium, high-performance trading journal and operational dash
 * **React** (v18) — Bibliothèque JavaScript pour concevoir des interfaces réactives.
 * **CSS Variables & Flexbox/Grid** — Pour une mise en page fluide sans frameworks lourds.
 * **SVG** — Utilisé pour le rendu de la courbe d'équité (Sparkline) dynamique.
+# trading_vault
