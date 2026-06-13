@@ -402,13 +402,13 @@ function TradeModal({init,onSave,onClose}){
   const prevPnl=calcPnl();
   const prevRR=calcRR();
 
-  const Field=({label,fkey,type="text",...rest})=>(
+  const field=(label,fkey,type="text",rest={})=>(
     <div>
       <label className="lbl">{label}</label>
       <input type={type} value={f[fkey]} onChange={e=>set(fkey,e.target.value)} {...rest}/>
     </div>
   );
-  const Select=({label,fkey,opts})=>(
+  const sel=(label,fkey,opts)=>(
     <div>
       <label className="lbl">{label}</label>
       <select value={f[fkey]} onChange={e=>set(fkey,e.target.value)}>
@@ -445,27 +445,27 @@ function TradeModal({init,onSave,onClose}){
           )}
 
           <div className="g2" style={{gap:10,marginBottom:10}}>
-            <Field label="Date" fkey="date" type="date"/>
-            <Field label="Symbole" fkey="symbol" placeholder="GOLD, EUR/USD..."/>
+            {field("Date","date","date")}
+            {field("Symbole","symbol","text",{placeholder:"GOLD, EUR/USD..."})}
           </div>
           <div className="g3" style={{gap:10,marginBottom:10}}>
-            <Select label="Direction" fkey="direction" opts={["LONG","SHORT"]}/>
-            <Field label="Entrée" fkey="entry" type="number" step="any" placeholder="0.00"/>
-            <Field label="Sortie" fkey="exit" type="number" step="any" placeholder="0.00"/>
+            {sel("Direction","direction",["LONG","SHORT"])}
+            {field("Entrée","entry","number",{step:"any",placeholder:"0.00"})}
+            {field("Sortie","exit","number",{step:"any",placeholder:"0.00"})}
           </div>
           <div className="g3" style={{gap:10,marginBottom:10}}>
-            <Field label="Stop Loss" fkey="sl" type="number" step="any" placeholder="0.00"/>
-            <Field label="Take Profit" fkey="tp" type="number" step="any" placeholder="0.00"/>
-            <Field label="Taille (lots)" fkey="size" type="number" step="any" placeholder="0.1"/>
+            {field("Stop Loss","sl","number",{step:"any",placeholder:"0.00"})}
+            {field("Take Profit","tp","number",{step:"any",placeholder:"0.00"})}
+            {field("Taille (lots)","size","number",{step:"any",placeholder:"0.1"})}
           </div>
           <div className="g4" style={{gap:10,marginBottom:10}}>
-            <Select label="Session" fkey="session" opts={["Tokyo","London","New York","Overlap"]}/>
-            <Select label="Setup" fkey="setup" opts={["FVG","Orderblock","Breakout","Structure","Scalp","Autre"]}/>
-            <Select label="Émotion" fkey="emotion" opts={["Confiant","Neutre","Incertain","Stressé","Impatient","Euphorique"]}/>
-            <Field label="Frais ($)" fkey="fees" type="number" placeholder="8"/>
+            {sel("Session","session",["Tokyo","London","New York","Overlap"])}
+            {sel("Setup","setup",["FVG","Orderblock","Breakout","Structure","Scalp","Autre"])}
+            {sel("Émotion","emotion",["Confiant","Neutre","Incertain","Stressé","Impatient","Euphorique"])}
+            {field("Frais ($)","fees","number",{placeholder:"8"})}
           </div>
           <div className="g2" style={{gap:10,marginBottom:10}}>
-            <Select label="Statut (auto si vide)" fkey="status" opts={["","WIN","LOSS","BE","OPEN"]}/>
+            {sel("Statut (auto si vide)","status",["","WIN","LOSS","BE","OPEN"])}
             <div>
               <label className="lbl">Règles respectées ?</label>
               <div style={{display:"flex",gap:10,marginTop:2}}>
@@ -482,7 +482,7 @@ function TradeModal({init,onSave,onClose}){
             </div>
           </div>
           <div style={{marginBottom:10}}>
-            <Field label="Lien du Graphique / Screenshot (URL)" fkey="chart_link" placeholder="https://tradingview.com/x/..."/>
+            {field("Lien du Graphique / Screenshot (URL)","chart_link","text",{placeholder:"https://tradingview.com/x/..."})}
           </div>
           <div style={{marginBottom:18}}>
             <label className="lbl">Notes & Analyse post-trade</label>
